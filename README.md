@@ -2,17 +2,18 @@
 
 ```shell
 $ python main.py --help
-usage: main.py [-h] [-m MODULUS] [-a MULTI] [-c INC] -k KNOWN [KNOWN ...] [-n NEXT]
+usage: main.py [-h] [-m MODULUS] [-a MULTIPLIER] [-c INCREMENT] -k ELEMENT [ELEMENT ...] [-n COUNT]
 
 optional arguments:
   -h, --help            show this help message and exit
   -m MODULUS, --modulus MODULUS
                         Модуль LCG
-  -a MULTI, --multiplier MULTI
+  -a MULTIPLIER, --multiplier MULTIPLIER
                         Множитель LCG
-  -c INC, --increment INC
+  -c INCREMENT, --increment INCREMENT
                         Приращение LCG
-  -k KNOWN [KNOWN ...], --known-elements KNOWN [KNOWN ...]
+  -k ELEMENT [ELEMENT ...], --known-elements ELEMENT [ELEMENT ...]
                         Известные значения
-  -n NEXT, --next NEXT  Вычислить следующие значения
+  -n COUNT, --next COUNT
+                        Вычислить следующие значения
 ```
