@@ -3,12 +3,12 @@ from functools import reduce
 from math import gcd
 
 parser = argparse.ArgumentParser()
-
+requiredNamed = parser.add_argument_group('required arguments')
+requiredNamed.add_argument('-k', '--known-elements', metavar='ELEMENT', dest='known', nargs='+', type=int,
+                           help='Известные значения', required=True)
 parser.add_argument('-m', '--modulus', metavar='MODULUS', dest='modulus', type=int, help='Модуль LCG')
 parser.add_argument('-a', '--multiplier', metavar='MULTIPLIER', dest='multi', type=int, help='Множитель LCG')
 parser.add_argument('-c', '--increment', metavar='INCREMENT', dest='inc', type=int, help='Приращение LCG')
-parser.add_argument('-k', '--known-elements', metavar='ELEMENT', dest='known', nargs='+', type=int, help='Известные значения',
-                    required=True)
 parser.add_argument('-n', '--next', metavar='COUNT', dest='next', type=int, help='Вычислить следующие значения')
 args = parser.parse_args()
 
@@ -53,7 +53,7 @@ class LCG:
         self.m = m
 
     def next(self):
-        self.seed = (self.a*self.seed + self.c) % self.m
+        self.seed = (self.a * self.seed + self.c) % self.m
         return self.seed
 
 
@@ -81,11 +81,10 @@ if increment is None:
 
 print('''Модуль: {}
 Множитель: {}
-Приращение: {}
-'''.format(modulus, multiplier, increment))
+Приращение: {}'''.format(modulus, multiplier, increment))
 
 if args.next is not None:
-    print('Расчет следующих значений:')
+    print('\nРасчет следующих значений:')
     lcg = LCG(known_elements[-1], multiplier, increment, modulus)
     for _ in range(args.next):
         print(lcg.next())
