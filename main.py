@@ -4,12 +4,12 @@ from math import gcd
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('-m', '--modulus', dest='modulus', type=int, help='Модуль LCG')
-parser.add_argument('-a', '--multiplier', dest='multi', type=int, help='Множитель LCG')
-parser.add_argument('-c', '--increment', dest='inc', type=int, help='Приращение LCG')
-parser.add_argument('-k', '--known-elements', dest='known', nargs='+', type=int, help='Известные значения',
+parser.add_argument('-m', '--modulus', metavar='MODULUS', dest='modulus', type=int, help='Модуль LCG')
+parser.add_argument('-a', '--multiplier', metavar='MULTIPLIER', dest='multi', type=int, help='Множитель LCG')
+parser.add_argument('-c', '--increment', metavar='INCREMENT', dest='inc', type=int, help='Приращение LCG')
+parser.add_argument('-k', '--known-elements', metavar='ELEMENT', dest='known', nargs='+', type=int, help='Известные значения',
                     required=True)
-parser.add_argument('-n', '--next', dest='next', type=int, help='Вычислить следующие значения')
+parser.add_argument('-n', '--next', metavar='COUNT', dest='next', type=int, help='Вычислить следующие значения')
 args = parser.parse_args()
 
 
