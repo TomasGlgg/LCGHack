@@ -5,11 +5,11 @@ from math import gcd
 parser = argparse.ArgumentParser()
 requiredNamed = parser.add_argument_group('required arguments')
 requiredNamed.add_argument('-k', '--known-elements', metavar='ELEMENT', dest='known', nargs='+', type=int,
-                           help='Известные значения', required=True)
-parser.add_argument('-m', '--modulus', metavar='MODULUS', dest='modulus', type=int, help='Модуль LCG')
-parser.add_argument('-a', '--multiplier', metavar='MULTIPLIER', dest='multi', type=int, help='Множитель LCG')
-parser.add_argument('-c', '--increment', metavar='INCREMENT', dest='inc', type=int, help='Приращение LCG')
-parser.add_argument('-n', '--next', metavar='COUNT', dest='next', type=int, help='Вычислить следующие значения')
+                           help='Known values', required=True)
+parser.add_argument('-m', '--modulus', metavar='MODULUS', dest='modulus', type=int, help='LCG modulus')
+parser.add_argument('-a', '--multiplier', metavar='MULTIPLIER', dest='multi', type=int, help='LCG multiplier')
+parser.add_argument('-c', '--increment', metavar='INCREMENT', dest='inc', type=int, help='LCG increment')
+parser.add_argument('-n', '--next', metavar='COUNT', dest='next', type=int, help='Calculate next values')
 args = parser.parse_args()
 
 
@@ -63,28 +63,28 @@ multiplier = args.multi
 increment = args.inc
 if modulus is None:
     if len(known_elements) < 6:
-        print('Для вычисления модуля необходимо как минимум 6 известных значений')
+        print('At least 6 known values are needed to calculate the modulus')
         exit()
     modulus = crack_unknown_modulus(known_elements)
 
 if multiplier is None:
     if len(known_elements) < 3:
-        print('Для вычисления множителя необходимо как минимум 3 известных значения')
+        print('At least 3 known values are needed to calculate the multiplier')
         exit()
     multiplier = crack_unknown_multiplier(known_elements, modulus)
 
 if increment is None:
     if len(known_elements) < 2:
-        print('Для вычисления приращения необходимо как минимум 2 известных значений')
+        print('At least 2 known values are needed to calculate the increment')
         exit()
     increment = crack_unknown_increment(known_elements, modulus, multiplier)
 
-print('''Модуль: {}
-Множитель: {}
-Приращение: {}'''.format(modulus, multiplier, increment))
+print('''Modulus: {}
+Multiplier: {}
+Increment: {}'''.format(modulus, multiplier, increment))
 
 if args.next is not None:
-    print('\nРасчет следующих значений:')
+    print('\nCalculating next values:')
     lcg = LCG(known_elements[-1], multiplier, increment, modulus)
     for _ in range(args.next):
         print(lcg.next())

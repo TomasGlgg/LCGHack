@@ -1,21 +1,20 @@
 # LCGHack
 
-```shell
-$ python main.py --help
+```
 usage: main.py [-h] -k ELEMENT [ELEMENT ...] [-m MODULUS] [-a MULTIPLIER] [-c INCREMENT] [-n COUNT]
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -m MODULUS, --modulus MODULUS
-                        Модуль LCG
+                        LCG modulus
   -a MULTIPLIER, --multiplier MULTIPLIER
-                        Множитель LCG
+                        LCG multiplier
   -c INCREMENT, --increment INCREMENT
-                        Приращение LCG
+                        LCG increment
   -n COUNT, --next COUNT
-                        Вычислить следующие значения
+                        Calculate next values
 
 required arguments:
   -k ELEMENT [ELEMENT ...], --known-elements ELEMENT [ELEMENT ...]
-                        Известные значения
+                        Known values
 ```
